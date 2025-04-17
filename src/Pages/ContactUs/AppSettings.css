@@ -1,0 +1,14 @@
+.AppSettings li.active {
+    padding: 5px 10px !important;
+    border-bottom: 2px rgb(219, 194, 194) solid;
+    border-radius: 0 !important;
+    background-color: rgb(219, 194, 194) !important;
+    border-radius: 5px !important;
+}
+
+
+
+.AppSettings li.link {
+    padding: 5px 10px !important;
+
+}

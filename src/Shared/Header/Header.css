@@ -1,0 +1,44 @@
+.profile-container {
+    position: relative;
+    cursor: pointer;
+}
+
+.profile-img {
+    width: 40px;
+    /* أو حسب المقاس المناسب */
+    height: 40px;
+    border-radius: 50%;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 40px;
+    right: -130px;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    display: none;
+    min-width: 180px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+    padding: 10px 0;
+}
+
+.dropdown-menu a {
+
+    display: block;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: #333;
+    transition: background 0.3s ease;
+    font-size: 12px;
+
+}
+
+.dropdown-menu a:hover {
+    background-color: #f2f2f2;
+}
+
+.profile-container:hover .dropdown-menu {
+    display: block;
+}

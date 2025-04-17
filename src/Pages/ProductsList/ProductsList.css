@@ -1,0 +1,18 @@
+.hovering:hover {
+    background-color: salmon;
+}
+
+.btnWrapper button {
+    padding: 7px 6px;
+    background-color: transparent;
+    border: none;
+    margin-left: 0px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.btnWrapper button.activeBtn {
+
+    border-bottom: 2px solid rgba(229, 57, 70, 1);
+
+}

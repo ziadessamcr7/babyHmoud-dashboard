@@ -1,0 +1,21 @@
+.settings form input {
+    width: 100%;
+    margin-bottom: 20px;
+
+}
+
+
+.settings form label {
+    display: block;
+}
+
+.settings input {
+    background-color: rgba(239, 241, 249, 0.6);
+    padding: 7px;
+    border: none;
+
+}
+
+.activeBtn {
+    border-bottom: 2px solid #868679;
+}

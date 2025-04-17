@@ -1,0 +1,71 @@
+/* Base Styles */
+.ps-sidebar-root {
+    border-right: none !important;
+}
+
+/* Menu Items */
+.ps-menu-button {
+    display: flex;
+    align-items: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ps-menu-button:hover {
+    transform: translateX(5px);
+}
+
+/* Active State */
+.ps-menu-button.active {
+    font-weight: bold;
+    position: relative;
+}
+
+.ps-menu-button.active::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(to bottom, #4facfe 0%, #00f2fe 100%);
+    border-radius: 0 4px 4px 0;
+}
+
+/* Submenu */
+.ps-submenu-content {
+    background-color: rgba(245, 245, 245, 0.8) !important;
+    padding: 0 8px !important;
+    margin: 4px 0 !important;
+}
+
+/* Collapsed State */
+.ps-collapsed .ps-menu-button {
+    justify-content: center;
+}
+
+/* Tooltip for collapsed items */
+.MuiTooltip-tooltip {
+    background-color: #333 !important;
+    font-size: 12px !important;
+    padding: 8px 12px !important;
+    border-radius: 6px !important;
+}
+
+/* Smooth transitions */
+.ps-sidebar-root {
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* Scrollbar styling */
+.ps-sidebar-container::-webkit-scrollbar {
+    width: 6px;
+}
+
+.ps-sidebar-container::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+}
+
+.ps-sidebar-container::-webkit-scrollbar-track {
+    background-color: transparent;
+}

@@ -1,0 +1,37 @@
+.signIn form input:not([type="checkbox"]) {
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 7px;
+    border: 1px solid rgb(185, 181, 181);
+    border-radius: 5px;
+}
+
+
+.signIn form small {
+    font-size: 14px;
+    color: rgba(194, 200, 207, 1);
+}
+
+.signIn form button {
+    background-color: rgba(101, 73, 41, 1);
+    border-radius: 7px;
+    border: none;
+    padding: 10px 20px;
+    color: white;
+}
+
+
+.bgImg {
+    background-image: url('/assets/imgs/signInImg.svg') !important;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+
+}
+
+
+
+.signIn,
+.bgImg {
+    height: 97.5vh !important;
+}
