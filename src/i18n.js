@@ -252,6 +252,75 @@ const resources = {
         btn: 'Delete'
       },
 
+      dynamicForm: {
+        mainTitle: 'Custom Product Form',
+        formName: 'Form Name',
+        formDescription: 'Description',
+        fromFields: 'Fields',
+        AddField: 'Add Field',
+        createForm: 'Create Form',
+        updateForm: 'Update Form',
+        resetBtn: 'Reset',
+        currentForms: 'Current Forms',
+        text: 'Text',
+        dropDownList: 'Dropdown List',
+        formattedText: 'Formatted Text',
+        naming: 'Label',
+        choosingJson: 'Options (Enter full JSON)',
+        choosingCommas: 'Options (Comma-separated)'
+      },
+
+      connectProducts: {
+        producList: 'Products List',
+        productName: 'Name',
+        productPrice: 'Price',
+        productDescription: 'Description',
+        productImg: 'Image ',
+        productCategory: 'Category',
+      },
+
+
+      groupColors: {
+        groupName: 'Group Name',
+        chooseColor: 'Choose Color',
+        addBtn: 'Add',
+        colors: 'Colors',
+        colorGroupId: 'Color Group ID'
+      },
+
+      notifications: {
+        title: 'Title',
+        message: 'Message',
+        addBtn: 'Add',
+        resetBtn: 'Reset',
+        date: 'Send Date',
+        numOfRec: 'Number of Recipients',
+        listOfNotifications: 'Previous Notifications Log',
+        success: 'Success',
+        failure: 'Failure'
+      },
+
+      banners: {
+        title: 'Title',
+        desc: 'Description',
+        orderNum: 'Order Number',
+        addImg: 'Add Img',
+        addBtn: 'Add',
+        updateBtn: 'Update',
+        resetBtn: 'Reset',
+        subTitle: 'Sub Title',
+        img: 'Image'
+      },
+
+      bannersDel: {
+        title: 'Confrim Delete',
+        subtitle: 'Are you sure you want to delete?',
+        close: 'close',
+        delete: 'delete'
+      },
+
+
+
       "country": {
         "name_ar": "Country Name (AR)",
         "name_en": "Country Name (EN)",
@@ -613,6 +682,73 @@ const resources = {
         title: 'حذف التقييم',
         subtitle: 'هل تريد حذف هذا التعليق؟',
         btn: 'حذف'
+      },
+
+      dynamicForm: {
+        mainTitle: 'النموذج المخصص للمنتجات',
+        formName: 'اسم النموذج',
+        formDescription: 'الوصف',
+        fromFields: 'الحقول',
+        AddField: 'اضافة حقل',
+        createForm: 'إنشاء نموذج',
+        updateForm: 'تعديل نموذج',
+        resetBtn: 'إعادة تعيين',
+        currentForms: 'النماذج الحالية',
+        text: 'نص',
+        dropDownList: 'قائمة منسدلة',
+        formattedText: 'نص منسق',
+        dropDownList: 'formDescription',
+        naming: 'التسمية',
+        choosingJson: 'خيارات (أدخل JSON كاملاً)',
+        choosingCommas: 'خيارات (مفصولة بفواصل)'
+      },
+
+      connectProducts: {
+        producList: 'قائمة المنتجات',
+        productName: 'الاسم',
+        productPrice: 'السعر',
+        productDescription: 'الوصف',
+        productImg: 'الصورة ',
+        productCategory: 'القسم',
+      },
+
+      groupColors: {
+        groupName: 'اسم المجموعة',
+        chooseColor: 'اختر اللون',
+        addBtn: 'إضافة',
+        colors: 'الألوان',
+        colorGroupId: 'معرّف مجموعة الألوان'
+      },
+
+      notifications: {
+        title: 'العنوان',
+        message: 'الرسالة',
+        addBtn: 'اضافة',
+        resetBtn: 'اعادة ضبط',
+        date: 'تاريخ الإرسال',
+        numOfRec: 'عدد المستلمين',
+        listOfNotifications: 'سجل الاشعارات السابقة',
+        success: 'نجاح',
+        failure: 'فشل'
+      },
+
+      banners: {
+        title: 'العنوان',
+        desc: 'الوصف',
+        orderNum: 'رقم الترتيب',
+        img: 'الصورة',
+        addImg: 'اضافة صورة',
+        addBtn: 'إضافة',
+        updateBtn: 'تعديل',
+        resetBtn: 'إعادة تعيين',
+        subTitle: 'العنوان الفرعي'
+      },
+
+      bannersDel: {
+        title: 'حذف البانر',
+        subtitle: 'هل انت متأكد من الحذف؟',
+        close: 'اغلاق',
+        delete: 'حذف'
       },
 
 
