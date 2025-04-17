@@ -12,7 +12,7 @@
     color: rgba(194, 200, 207, 1);
 }
 
-.signIn form a {
+.signIn form a button {
     background-color: rgba(101, 73, 41, 1);
     border-radius: 7px;
     border: none;
