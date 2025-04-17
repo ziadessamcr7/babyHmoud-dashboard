@@ -53,7 +53,7 @@ const Roles = () => {
 
                 {
                     users.map((user, idx) => {
-                        return <Grid2 sx={{ bgcolor: 'rgba(241, 241, 241, 0.5)', alignItems: 'center', margin: '20px 0' }} size={8} container spacing={0}>
+                        return <Grid2 key={idx} sx={{ bgcolor: 'rgba(241, 241, 241, 0.5)', alignItems: 'center', margin: '20px 0' }} size={8} container spacing={0}>
 
                             <Grid2 size={1}>
                                 <Item>

@@ -1,9 +1,7 @@
-import { Box, Collapse, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow } from '@mui/material'
+import { Box, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow } from '@mui/material'
 import React, { useState } from 'react'
 import SearchIcon from '@mui/icons-material/Search';
-import DeleteIcon from '@mui/icons-material/Delete';
-import LockIcon from '@mui/icons-material/Lock';
-import BorderColorIcon from '@mui/icons-material/BorderColor';
+
 
 const Transactions = () => {
 
@@ -32,9 +30,9 @@ const Transactions = () => {
 
     interface RowData {
         name: string;
-        calories: number;
+        calories: string;
         fat: number;
-        carbs: number;
+        carbs: string;
         protein: number;
         price: number;
         history: HistoryData[];
@@ -43,10 +41,10 @@ const Transactions = () => {
 
     const createData = (
         name: string,
-        calories: number,
+        calories: string,
         fat: number,
-        carbs: number,
-        protein: number,
+        carbs: string,
+        protein: any,
         price: number,
         id: number
     ): RowData => {
@@ -58,7 +56,7 @@ const Transactions = () => {
             protein,
             price,
             history: [
-                { date: '', customerId: '11091700', amount: 3, ayHaga: 555, ayHaga2: 'Apple iPhone 16' },
+                { date: '', customerId: '11091700', amount: 3, ayHaga: 555, ayHaga2: 5 },
             ],
             id
         };
@@ -66,7 +64,6 @@ const Transactions = () => {
 
 
     const ClientsData: React.FC<{ row: RowData }> = ({ row }) => {
-        const [open, setOpen] = useState(false);
 
         return (
             <>

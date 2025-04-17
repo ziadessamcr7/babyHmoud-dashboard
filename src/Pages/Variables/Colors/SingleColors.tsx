@@ -12,14 +12,12 @@ import {
   TableCell,
   TableBody,
   TablePagination,
-  styled
 } from "@mui/material";
-import Grid2 from "@mui/material/Unstable_Grid2"; // تأكد من دعم مشروعك لـ Grid2
 import axios from "axios";
-import { useForm } from "react-hook-form";
 import { BeatLoader } from "react-spinners";
 import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
+import { useForm } from "react-hook-form";
 
 // تعريف واجهة اللون مع الحقول الجديدة
 interface Color {
@@ -43,14 +41,7 @@ const modalStyle = {
   borderRadius: 2,
 };
 
-const StyledPaper = styled(Paper)(({ theme }) => ({
-  backgroundColor: "#fff",
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: "start",
-  color: theme.palette.text.primary,
-  boxShadow: "none",
-}));
+
 
 // مودال الإضافة/التعديل
 interface ColorModalProps {
@@ -220,7 +211,7 @@ const ColorRow: React.FC<{
 
 // المكون الرئيسي لإدارة الألوان
 const SingleColors: React.FC = () => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const [isLoading, setIsLoading] = useState(false);
   const [colors, setColors] = useState<Color[]>([]);
 

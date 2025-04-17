@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { useSnackbar } from 'notistack';
 import './Notification.css'
+import { useTranslation } from 'react-i18next';
 
 interface NotificationData {
   title: string;
@@ -23,9 +24,12 @@ interface NotificationHistory {
 }
 
 export const Notification = () => {
-  const { register, handleSubmit, formState: { errors }, reset } = useForm<NotificationData>();
+  const { register, handleSubmit, reset } = useForm<NotificationData>();
   const [notifications, setNotifications] = useState<NotificationHistory[]>([]);
   const { enqueueSnackbar } = useSnackbar();
+
+  const { t } = useTranslation();
+
 
   // Remove all image-related code
   const Item = styled(Paper)(({ theme }) => ({
@@ -150,8 +154,8 @@ export const Notification = () => {
             <Grid item xs={12}>
               <Item>
                 <Grid container spacing={2} direction="column">
-                  <InputField label="العنوان" name="title" register={register} required />
-                  <InputField label="الرسالة" name="message" register={register} required />
+                  <InputField label={t('notifications.title')} name="title" register={register} required />
+                  <InputField label={t('notifications.message')} name="message" register={register} required />
                 </Grid>
               </Item>
             </Grid>
@@ -165,14 +169,14 @@ export const Notification = () => {
               onClick={handleReset}
               color="secondary"
             >
-              إعادة الضبط
+              {t('notifications.addBtn')}
             </StyledButton>
 
             <StyledButton
               color="primary"
               type="submit"
             >
-              تنفيذ
+              {t('notifications.resetBtn')}
             </StyledButton>
           </Box>
 
@@ -183,18 +187,18 @@ export const Notification = () => {
       {/* Notifications History Table */}
       <StyledPaper sx={{ mt: 4 }}>
         <Typography variant="h6" gutterBottom sx={{ textAlign: 'right', mb: 2 }}>
-          سجل الإشعارات السابقة
+          {t('notifications.listOfNotifications')}
         </Typography>
         <Box sx={{ overflowX: 'auto' }}>
           <table style={{ width: '100%', borderCollapse: 'collapse' }}>
             <thead>
               <tr style={{ backgroundColor: '#f5f5f5' }}>
-                <th style={{ padding: '12px', textAlign: 'right', borderBottom: '1px solid #ddd' }}>العنوان</th>
-                <th style={{ padding: '12px', textAlign: 'right', borderBottom: '1px solid #ddd' }}>الرسالة</th>
-                <th style={{ padding: '12px', textAlign: 'right', borderBottom: '1px solid #ddd' }}>تاريخ الإرسال</th>
-                <th style={{ padding: '12px', textAlign: 'right', borderBottom: '1px solid #ddd' }}>عدد المستلمين</th>
-                <th style={{ padding: '12px', textAlign: 'right', borderBottom: '1px solid #ddd' }}>نجاح</th>
-                <th style={{ padding: '12px', textAlign: 'right', borderBottom: '1px solid #ddd' }}>فشل</th>
+                <th style={{ padding: '12px', textAlign: 'right', borderBottom: '1px solid #ddd' }}> {t('notifications.title')} </th>
+                <th style={{ padding: '12px', textAlign: 'right', borderBottom: '1px solid #ddd' }}> {t('notifications.message')}  </th>
+                <th style={{ padding: '12px', textAlign: 'right', borderBottom: '1px solid #ddd' }}> {t('notifications.date')}  </th>
+                <th style={{ padding: '12px', textAlign: 'right', borderBottom: '1px solid #ddd' }}> {t('notifications.numOfRec')} </th>
+                <th style={{ padding: '12px', textAlign: 'right', borderBottom: '1px solid #ddd' }}> {t('notifications.success')} </th>
+                <th style={{ padding: '12px', textAlign: 'right', borderBottom: '1px solid #ddd' }}> {t('notifications.failure')} </th>
               </tr>
             </thead>
             <tbody>

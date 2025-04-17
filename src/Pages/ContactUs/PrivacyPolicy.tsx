@@ -1,6 +1,6 @@
 import { styled, Paper, Typography, Button, Grid, Box, TextField, CircularProgress } from '@mui/material';
 import axios from 'axios';
-import React, { memo, useCallback, useEffect, useState } from 'react'
+import { memo, useCallback, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
@@ -103,12 +103,12 @@ const PrivacyPolicy = () => {
     }, [getAboutUsData]);
 
     // Submit the updated data to the API
-    const submitAboutUsData = useCallback((data) => {
+    const submitAboutUsData = useCallback((data: any) => {
         setIsSubmitting(true);
         axios.put("https://babyhumod.shop/api/pages", data, {
             headers: { "Content-Type": "application/json" }
         })
-            .then((response) => {
+            .then(() => {
                 toast.success(t('aboutUs.updateSuccess'));
             })
             .catch((error) => {

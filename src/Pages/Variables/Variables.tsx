@@ -1,11 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import { useState } from 'react';
 import './Variables.css';
-import { Box, Grid2, Paper, styled, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow } from '@mui/material';
-import { Link } from 'react-router-dom';
-import { useForm } from 'react-hook-form';
-import axios from 'axios';
-import { toast } from 'react-toastify';
-import { BeatLoader } from 'react-spinners';
 import SingleColors from './Colors/SingleColors';
 import GroupColors from './Colors/GroupColors';
 import SingleSize from './Sizes/SingleSize';
@@ -13,6 +7,7 @@ import GroupSize from './Sizes/GroupSize';
 import { useTranslation } from 'react-i18next';
 
 const Variables = () => {
+
     const { t } = useTranslation();
     const [activeBtn, setActiveBtn] = useState('singleColors');
 

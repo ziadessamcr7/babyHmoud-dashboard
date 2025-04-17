@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import { BeatLoader } from 'react-spinners';
 import { toast } from 'react-toastify';
 import './Group.css';
+import { useTranslation } from 'react-i18next';
 
 const GroupColors = () => {
     const { register, handleSubmit, formState: { errors }, setValue } = useForm();
@@ -16,6 +17,9 @@ const GroupColors = () => {
     const [groupColorId, setGroupColorId] = useState(0);
     const [open, setOpen] = useState(false);
     const [modalType, setModalType] = useState(""); // لتحديد نوع المودال ("delete" أو "update" أو "view")
+
+    const { t } = useTranslation();
+
 
     // Pagination
     const [page, setPage] = useState(0);
@@ -43,8 +47,6 @@ const GroupColors = () => {
         }),
     }));
 
-    const [activeBtn, setActiveBtn] = useState('myAccount');
-    const [colors, setColors] = useState<any[]>([]);
 
     // دالة لجلب مجموعات الألوان
     const getAllColorGroups = () => {
@@ -160,7 +162,6 @@ const GroupColors = () => {
 
     // مكوّن يعرض بيانات صف من الجدول
     const ClientsData: React.FC<{ row: any }> = ({ row }) => {
-        const [localOpen, setLocalOpen] = useState(false);
         return (
             <>
                 <TableRow>
@@ -182,8 +183,8 @@ const GroupColors = () => {
                             fontWeight: 'bold',
                             flexDirection: 'column'
                         }}>
-                            <small>{row?.colors?.map((col, idx) => {
-                                return <p style={{ margin: '0' }}> {col.name} </p>
+                            <small>{row?.colors?.map((col: any, idx: any) => {
+                                return <p key={idx} style={{ margin: '0' }}> {col.name} </p>
                             })} </small>
                         </span>
                     </TableCell>
@@ -253,7 +254,7 @@ const GroupColors = () => {
                         <Item>
                             <div className='settings'>
                                 <form>
-                                    <label>اسم المجموعة</label>
+                                    <label> {t('groupColors.groupName')} </label>
                                     <input
                                         type="text"
                                         placeholder=""
@@ -269,7 +270,7 @@ const GroupColors = () => {
                         <div className="dropdown">
                             <button
                                 style={{ border: 'blue 1px solid', backgroundColor: 'transparent', padding: '4px 0' }}
-                                type='button'>  اختر اللون ▽</button>
+                                type='button'>  {t('groupColors.chooseColor')} ▽</button>
                             <div className="dropdown-content">
                                 {singleColors.map((color, idx) => (
                                     <label key={idx}>
@@ -295,7 +296,7 @@ const GroupColors = () => {
                                     }}
                                     variant='contained'
                                     type='submit'
-                                >اضافه</Button>
+                                >  {t('groupColors.addBtn')}  </Button>
                                 :
                                 <Button
                                     style={{
@@ -327,9 +328,9 @@ const GroupColors = () => {
                         <Table>
                             <TableHead>
                                 <TableRow>
-                                    <TableCell align='center' sx={{ color: 'rgba(139, 144, 154, 1)' }}>اسم المجموعة</TableCell>
-                                    <TableCell align='center' sx={{ color: 'rgba(139, 144, 154, 1)' }}> الالوان</TableCell>
-                                    <TableCell align="center" sx={{ color: 'rgba(139, 144, 154, 1)' }}>color group ID</TableCell>
+                                    <TableCell align='center' sx={{ color: 'rgba(139, 144, 154, 1)' }}> {t('groupColors.groupName')} </TableCell>
+                                    <TableCell align='center' sx={{ color: 'rgba(139, 144, 154, 1)' }}>  {t('groupColors.colors')} </TableCell>
+                                    <TableCell align="center" sx={{ color: 'rgba(139, 144, 154, 1)' }}> {t('groupColors.colorGroupId')} </TableCell>
                                     <TableCell align="center" sx={{ color: 'rgba(139, 144, 154, 1)' }}>Actions</TableCell>
                                 </TableRow>
                             </TableHead>

@@ -1,4 +1,3 @@
-import { useState } from 'react'
 
 import './App.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
@@ -8,7 +7,7 @@ import SignIn from './Auth/SignIn/SignIn'
 import ForgetPassword from './Auth/ForgetPassword/ForgetPassword'
 import MasterLayout from './Layouts/MasterLayout/MasterLayout'
 import Dashboard from './Pages/Dashboard/Dashboard'
-import Requests from './Pages/Requests/Requests'
+// import Requests from './Pages/Requests/Requests'
 import Clients from './Pages/Clients/Clients'
 import CollapsibleTable from './Pages/Requests/Requests'
 import Transactions from './Pages/Transactions/Transactions'
@@ -24,7 +23,7 @@ import Roles from './Pages/Roles/Roles'
 import AppSettings from './Pages/ContactUs/AppSettings'
 import { Notification } from './Pages/Notification/Notification'
 import Photos from './Pages/Photos/Photos'
-import PaymentMethods from './Pages/PaymentMethods/PaymentMethods'
+// import PaymentMethods from './Pages/PaymentMethods/PaymentMethods'
 import AllProducts from './Pages/AllProducts/AllProducts'
 import Variables from './Pages/Variables/Variables'
 import ConnectPorducts from './Pages/ConnectProducts/ConnectProducts'
@@ -67,7 +66,7 @@ function App() {
         { path: 'contact-us', element: <AppSettings /> },
         { path: 'notifications', element: <Notification /> },
         { path: 'photos', element: <Photos /> },
-        { path: 'payment', element: <PaymentMethods /> },
+        // { path: 'payment', element: <PaymentMethods /> },
         { path: 'products', element: <AllProducts /> },
         { path: 'variables', element: <Variables /> },
         { path: 'connect-products', element: <ConnectPorducts /> },

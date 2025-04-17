@@ -12,7 +12,6 @@ import {
     TableRow,
     Paper,
     TablePagination,
-    Button
 } from '@mui/material';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
@@ -47,20 +46,10 @@ interface ShippingData {
     total_price: string;
 }
 
-// تعريف نوع البيانات للجدول
-interface RowData {
-    name: string;
-    status: string;
-    total: string;
-    customerName: string;
-    date: string;
-    id: number;
-    products: ProductData[];
-}
+
 
 const Requests: React.FC<{ row: ShippingData }> = ({ row }) => {
     const [open, setOpen] = useState(false);
-    const [orderStatus, setOrderStatus] = useState(row.status);
 
 
 
@@ -69,7 +58,7 @@ const Requests: React.FC<{ row: ShippingData }> = ({ row }) => {
     const formatJSON = (jsonStr: string) => {
         try {
             const jsonObject = JSON.parse(jsonStr);
-            return Object.entries(jsonObject).map(([key, value]) => (
+            return Object.entries(jsonObject).map(([key, value]: any) => (
                 <div key={key}>
                     <strong>{key}:</strong> {value}
                 </div>
@@ -79,50 +68,6 @@ const Requests: React.FC<{ row: ShippingData }> = ({ row }) => {
         }
     };
 
-
-    // دالة لتغيير حالة الطلب
-    const handleChangeStatus = async () => {
-        const nextStatus = orderStatus === 5 ? 1 : orderStatus + 1; // التبديل بين الحالات
-        setOrderStatus(nextStatus);
-
-        // إرسال طلب لتحديث الحالة في الـ API
-        try {
-            const response = await fetch(`https://babyhumod.shop/api/orders/${row.id}/status`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ status: nextStatus }),
-            });
-            const data = await response.json();
-            if (data.success) {
-                alert("تم تغيير الحالة بنجاح");
-            } else {
-                alert("حدث خطأ في تحديث الحالة");
-            }
-        } catch (error) {
-            console.error('Error updating order status:', error);
-        }
-    };
-
-
-    // تحويل الـ status إلى نص مناسب
-    const getStatusText = (status: number) => {
-        switch (status) {
-            case 1:
-                return "في الانتظار";
-            case 2:
-                return "قيد الإنشاء";
-            case 3:
-                return "تم التنفيذ";
-            case 4:
-                return "قيد التوصيل";
-            case 5:
-                return "مكتمل";
-            default:
-                return "غير معروف";
-        }
-    };
 
 
 

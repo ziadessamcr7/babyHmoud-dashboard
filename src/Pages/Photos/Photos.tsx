@@ -35,7 +35,7 @@ const Photos = () => {
   const [currentSplashId, setCurrentSplashId] = useState<number | null>(null);
 
   // Modal state
-  const [modalType, setModalType] = useState<"delete" | "">("");
+  // const [modalType, setModalType] = useState<"delete" | "">("");
   const [open, setOpen] = useState(false);
 
   // Styled components
@@ -195,8 +195,8 @@ const Photos = () => {
   };
 
   // Modal handlers
-  const handleOpen = (type: "delete", splash: SplashScreenData) => {
-    setModalType(type);
+  const handleOpen = (splash: SplashScreenData) => {
+    // setModalType(type);
     setOpen(true);
     setCurrentSplashId(splash.id);
   };
@@ -405,7 +405,7 @@ const Photos = () => {
                     <TableCell align="center">
                       <Box sx={{ display: 'flex', justifyContent: 'center', gap: 1 }}>
                         <Button
-                          onClick={() => handleOpen("delete", splash)}
+                          onClick={() => handleOpen(splash)}
                           color="error"
                           size="small"
                         >

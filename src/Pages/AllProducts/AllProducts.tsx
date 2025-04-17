@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import './AllProducts.css';
 import {
   Avatar,
@@ -48,7 +48,7 @@ const AllProducts = () => {
   const [subImages, setSubImages]: any = useState([]);
   const [existingSubImages, setExistingSubImages] = useState([]);
   const [subImageFiles, setSubImageFiles]: any = useState([]);
-  const [deletedSubImages, setDeletedSubImages] = useState([]);
+  const [deletedSubImages, setDeletedSubImages]: any = useState([]);
 
   const BASE_URL = 'https://babyhumod.shop/api/products';
   const IMAGE_BASE_URL = 'https://babyhumod.shop/public/storage/';
@@ -85,6 +85,7 @@ const AllProducts = () => {
         </TableCell>
         <TableCell style={{ fontWeight: 'bolder' }} align="center">
           {row.category?.name}
+          <small style={{ display: 'block', color: 'gray' }}> {row.category?.name_en} </small>
         </TableCell>
         <TableCell style={{ fontWeight: 'bolder' }} align="center">
           <span onClick={() => handleOpen("delete", row)} style={{ cursor: 'pointer' }}>
@@ -98,11 +99,11 @@ const AllProducts = () => {
     );
   };
 
-  const handleChangePage = (_event, newPage) => {
+  const handleChangePage = (_event: any, newPage: any) => {
     setPage(newPage);
   };
 
-  const handleChangeRowsPerPage = (event) => {
+  const handleChangeRowsPerPage = (event: any) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
@@ -133,10 +134,10 @@ const AllProducts = () => {
   const handleSubImagesUpload = (event: any) => {
     if (event.target.files) {
       const uploadedFiles = Array.from(event.target.files);
-      const previewUrls = uploadedFiles.map(file => URL.createObjectURL(file));
-      setSubImages(prev => [...prev, ...previewUrls]);
-      setSubImageFiles(prev => [...prev, ...uploadedFiles]);
-      console.log('تمت إضافة صور إضافية:', uploadedFiles.map(file => file.name));
+      const previewUrls = uploadedFiles.map((file: any) => URL.createObjectURL(file));
+      setSubImages((prev: any[]) => [...prev, ...previewUrls]);
+      setSubImageFiles((prev: any[]) => [...prev, ...uploadedFiles]);
+      console.log('تمت إضافة صور إضافية:', uploadedFiles.map((file: any) => file.name));
     }
   };
 
@@ -147,10 +148,10 @@ const AllProducts = () => {
 
     if (imageToRemove.startsWith(IMAGE_BASE_URL)) {
       const imagePath = imageToRemove.replace(IMAGE_BASE_URL, '');
-      setDeletedSubImages(prev => [...prev, imagePath]);
+      setDeletedSubImages((prev: any) => [...prev, imagePath]);
       setExistingSubImages(prev => prev.filter(img => IMAGE_BASE_URL + img !== imageToRemove));
     } else {
-      setSubImageFiles(prev => {
+      setSubImageFiles((prev: any[]) => {
         const newFiles = [...prev];
         newFiles.splice(index - existingSubImages.length, 1);
         return newFiles;
@@ -204,7 +205,7 @@ const AllProducts = () => {
   };
 
   // تعبئة النموذج بالبيانات عند التعديل
-  const updateForm = (product) => {
+  const updateForm = (product: any) => {
     setValue('name', product.name);
     setValue('name_en', product.name_en || ''); // الحقل الإنجليزي
     setValue('price', product.price);
@@ -215,7 +216,7 @@ const AllProducts = () => {
     setMainImage(IMAGE_BASE_URL + product.main_image);
     setMainImageFile(null);
     if (product.sub_images && product.sub_images.length > 0) {
-      const subImagesUrls = product.sub_images.map((img) => IMAGE_BASE_URL + img);
+      const subImagesUrls = product.sub_images.map((img: any) => IMAGE_BASE_URL + img);
       setSubImages(subImagesUrls);
       setExistingSubImages(product.sub_images);
     } else {
@@ -278,12 +279,12 @@ const AllProducts = () => {
       });
     }
     if (subImageFiles.length > 0) {
-      subImageFiles.forEach((file, index) => {
+      subImageFiles.forEach((file: any, index: any) => {
         formData.append(`sub_images[${index}]`, file);
       });
     }
     if (deletedSubImages.length > 0) {
-      deletedSubImages.forEach((imagePath, index) => {
+      deletedSubImages.forEach((imagePath: any, index: any) => {
         formData.append(`deleted_sub_images[${index}]`, imagePath);
       });
     }
@@ -501,7 +502,7 @@ const AllProducts = () => {
           <Grid item xs={12} md={4}>
             <Item sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', height: '100%' }}>
               <div style={{ width: '100%', maxHeight: '400px', overflowY: 'auto' }}>
-                {subImages.map((img, index) => (
+                {subImages.map((img: any, index: any) => (
                   <div key={index} style={{ marginBottom: '15px', position: 'relative' }}>
                     <ImagePlaceholder sx={{ width: '100%', height: '120px' }}>
                       <Avatar
@@ -628,7 +629,7 @@ const AllProducts = () => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {products.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
+                {products.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row: any) => (
                   <ClientsData key={row.id} row={row} />
                 ))}
               </TableBody>

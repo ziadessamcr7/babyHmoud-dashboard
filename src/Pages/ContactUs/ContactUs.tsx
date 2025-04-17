@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState, memo } from 'react';
-import { Box, Grid, Paper, Typography, TextField, Button, CircularProgress } from '@mui/material';
+import { Box, Grid, Paper, TextField, Button, CircularProgress } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import axios from 'axios';
 import { toast } from 'react-toastify';
@@ -36,12 +36,14 @@ const StyledButton = styled(Button)(({ theme, color }) => ({
   },
 }));
 
-const FieldLabel = styled(Typography)(({ theme }) => ({
+const FieldLabel = styled('label')(({ theme }) => ({
   marginBottom: theme.spacing(1),
   fontWeight: 500,
   textAlign: 'right',
   direction: 'rtl',
+  display: 'block',
 }));
+
 
 // Optimized InputField component with memoization
 interface InputFieldProps {
@@ -54,7 +56,7 @@ interface InputFieldProps {
 const InputField = memo(({ label, name, value, onChange }: InputFieldProps) => (
   <Grid item xs={12}>
     <Item>
-      <FieldLabel component="label" htmlFor={name}>
+      <FieldLabel htmlFor={name}>
         {label}
       </FieldLabel>
       <TextField

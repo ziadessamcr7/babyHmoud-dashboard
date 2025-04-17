@@ -161,7 +161,6 @@ const Countries: React.FC = () => {
   // تخزين المدن هنا كمصفوفة من الكائنات التي تحتوي على id واسم باللغتين
   const [citiesMap, setCitiesMap] = useState<{ [key: number]: ApiCity[] }>({});
   const [shippingMethods, setShippingMethods] = useState<ApiShippingMethod[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
   const [editingCountryId, setEditingCountryId] = useState<number | null>(null);
 
   const [page, setPage] = useState(0);
@@ -169,7 +168,6 @@ const Countries: React.FC = () => {
 
   // جلب الدول والبيانات المرافقة منها
   const fetchCountries = async () => {
-    setIsLoading(true);
     try {
       const response = await axios.get("https://babyhumod.shop/api/countries");
       setCountries(response.data);
@@ -191,7 +189,8 @@ const Countries: React.FC = () => {
       console.error("Error fetching countries", error);
       toast.error(t("error.fetch_countries"));
     } finally {
-      setIsLoading(false);
+      console.log('finally');
+
     }
   };
 

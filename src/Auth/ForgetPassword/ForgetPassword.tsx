@@ -1,26 +1,19 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import {
     Box,
-    TextField,
     Button,
     Typography,
-    Container,
     Paper,
-    InputAdornment,
-    Radio,
-    RadioGroup,
-    FormControlLabel,
-    FormControl,
-    Select,
-    MenuItem,
     InputBase
 } from '@mui/material';
 import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
-import { prefixer } from 'stylis';
-import { CacheProvider } from '@emotion/react';
-import createCache from '@emotion/cache';
+
 import { Link } from 'react-router-dom';
 
+
+interface StyledProps {
+    selected: boolean;
+}
 
 const theme = createTheme({
     direction: 'rtl',
@@ -45,7 +38,7 @@ const StyledPaper = styled(Paper)(({ theme }) => ({
     overflow: 'visible'
 }));
 
-const StyledOption = styled(Paper)(({ theme, selected }: any) => ({
+const StyledOption = styled(Paper)<StyledProps>(({ theme, selected }) => ({
     padding: theme.spacing(1.5),
     borderRadius: 12,
     marginBottom: theme.spacing(2),
@@ -58,7 +51,7 @@ const StyledOption = styled(Paper)(({ theme, selected }: any) => ({
     overflow: 'visible'
 }));
 
-const CircleIcon = styled(Box)(({ theme, selected }: any) => ({
+const CircleIcon = styled(Box)<StyledProps>(({ selected }) => ({
     width: 40,
     height: 40,
     borderRadius: '50%',
@@ -69,7 +62,7 @@ const CircleIcon = styled(Box)(({ theme, selected }: any) => ({
     color: selected ? 'white' : 'black',
 }));
 
-const PhoneInputContainer = styled(Box)(({ theme }) => ({
+const PhoneInputContainer = styled(Box)(() => ({
     display: 'flex',
     alignItems: 'center',
     backgroundColor: '#f5f5f5',
@@ -80,14 +73,12 @@ const PhoneInputContainer = styled(Box)(({ theme }) => ({
 
 const ForgetPassword = () => {
     const [recoveryMethod, setRecoveryMethod] = useState('email');
-    const [countryCode, setCountryCode] = useState([
-        '+200', '+20', '+1', '+966'
-    ]);
-    const handleMethodChange = (method) => {
+
+    const handleMethodChange = (method: any) => {
         setRecoveryMethod(method);
     };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = (event: any) => {
         event.preventDefault();
         // Handle password reset logic here
     };
@@ -209,6 +200,7 @@ const ForgetPassword = () => {
                                             sx={{ ml: 1 }}
                                         />
                                     </PhoneInputContainer>
+
                                 )}
                             </Box>
 

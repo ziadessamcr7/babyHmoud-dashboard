@@ -23,11 +23,11 @@ const Clients = () => {
     const [isLoadingModal, setIsLoadingModal] = useState(false);
 
 
-    const [day, setDay] = useState('')
+    // const [day, setDay] = useState('')
 
     const [searchTerm, setSearchTerm] = useState(""); // قيمة البحث
-    const [filteredUsers, setFilteredUsers] = useState([]); // 
-    const [users, setUsers] = useState([]); // البيانات الأصلية
+    // const [filteredUsers, setFilteredUsers] = useState([]); // 
+    const [users, setUsers]: any = useState([]); // البيانات الأصلية
 
     const { t, i18n } = useTranslation();
 
@@ -90,7 +90,7 @@ const Clients = () => {
 
     const updateClientData = (data: any) => {
         axios.put(`https://babyhumod.shop/api/users/${clientId}`, data)
-            .then((response) => {
+            .then(() => {
                 toast.success('تم التعديل بنجاح')
                 getAllClients(); // إعادة تحميل قائمة العملاء بعد التحديث
                 handleClose()
@@ -133,7 +133,7 @@ const Clients = () => {
 
                 setIsLoadingModal(false)
 
-                setDay(response?.data[0]?.login_at?.slice(0, 10))
+                // setDay(response?.data[0]?.login_at?.slice(0, 10))
             })
             .catch((error) => {
                 console.error(error);
@@ -149,7 +149,7 @@ const Clients = () => {
 
 
     useEffect(() => {
-        const filtered = users.filter((user) =>
+        const filtered = users.filter((user: any) =>
             `${user.first_name} ${user.last_name}`
                 .toLowerCase()
                 .includes(searchTerm.toLowerCase())
@@ -324,7 +324,7 @@ const Clients = () => {
                                                     {
                                                         clientHistoryArray.length > 0 ? <>
                                                             {
-                                                                clientHistoryArray?.map((row: any, idx) => {
+                                                                clientHistoryArray?.map((row: any) => {
 
                                                                     return <>
 
@@ -494,7 +494,6 @@ const Clients = () => {
                     </TableContainer>
                 </Box>
             }
-
 
         </>
     );

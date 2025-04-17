@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   Box,
   Button,
@@ -43,11 +43,11 @@ interface Product {
   name_en?: string;
 }
 
-interface Category {
-  id: number;
-  name: string;
-  name_en?: string;
-}
+// interface Category {
+//   id: number;
+//   name: string;
+//   name_en?: string;
+// }
 
 // تعريف Item مرة واحدة فقط
 const Item = styled(Paper)(({ theme }: any) => ({
@@ -119,12 +119,12 @@ const AddOns = () => {
   // Data state
   const [extraProducts, setExtraProducts] = useState<ExtraProduct[]>([]);
   const [products, setProducts] = useState<Product[]>([]);
-  const [categories, setCategories] = useState<Category[]>([]);
+  // const [categories, setCategories] = useState<Category[]>([]);
   const [btnState, setBtnState] = useState<any>('add');
   const [currentProductId, setCurrentProductId] = useState<any>(null);
 
   // Modal state
-  const [modalType, setModalType] = useState<any>("");
+  // const [modalType, setModalType] = useState<any>("");
   const [open, setOpen] = useState<any>(false);
   const [isLoading, setIsLoading] = useState<any>(true);
 
@@ -155,14 +155,14 @@ const AddOns = () => {
   };
 
   // Fetch categories (المنتجات المرتبطة)
-  const fetchCategories = async () => {
-    try {
-      const res: any = await axios.get('https://babyhumod.shop/api/categories');
-      setCategories(res.data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  // const fetchCategories = async () => {
+  //   try {
+  //     const res: any = await axios.get('https://babyhumod.shop/api/categories');
+  //     // setCategories(res.data);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
 
   // Handle form submission (add/update)
   const onSubmit = async (data: any) => {
@@ -262,7 +262,9 @@ const AddOns = () => {
 
   // Modal handlers
   const handleOpen = (type: any, product: any) => {
-    setModalType(type);
+    // setModalType(type);
+    console.log(type);
+
     setOpen(true);
     setCurrentProductId(product.id);
   };
@@ -285,7 +287,7 @@ const AddOns = () => {
   useEffect(() => {
     fetchExtraProducts();
     fetchProducts();
-    fetchCategories();
+    // fetchCategories();
   }, []);
 
   return (

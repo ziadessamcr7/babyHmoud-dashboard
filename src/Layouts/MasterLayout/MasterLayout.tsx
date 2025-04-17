@@ -1,7 +1,6 @@
 import { Box, CssBaseline, Paper, styled } from "@mui/material";
-import React, { useState } from "react";
+import { useState } from "react";
 import SideBar from './../../Shared/Sidebar/SideBar';
-import { red } from "@mui/material/colors";
 import Header from "../../Shared/Header/Header";
 import { Outlet } from "react-router-dom";
 

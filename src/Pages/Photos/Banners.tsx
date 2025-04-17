@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import ImageIcon from '@mui/icons-material/Image';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 
 interface SplashScreenData {
     id: number;
@@ -17,6 +18,10 @@ interface SplashScreenData {
 const BASE_URL = 'https://babyhumod.shop/api/banners';
 
 const Banners = () => {
+
+    const { t } = useTranslation();
+
+
     // Form handling
     const { register, handleSubmit, formState: { errors }, setValue, reset } = useForm();
     const [previewImage, setPreviewImage] = useState<string | null>(null);
@@ -32,7 +37,7 @@ const Banners = () => {
     const [currentBannerId, setCurrentBannerId] = useState<number | null>(null);
 
     // Modal state
-    const [modalType, setModalType] = useState<"delete" | "">("");
+    // const [modalType, setModalType] = useState<"delete" | "">("");
     const [open, setOpen] = useState(false);
 
     // Styled components
@@ -100,7 +105,6 @@ const Banners = () => {
     };
 
 
-    const [order, setOrder] = useState([])
 
     // Fetch all splash screens
     const fetchAllOrders = async () => {
@@ -149,7 +153,7 @@ const Banners = () => {
                 ? BASE_URL
                 : `${BASE_URL}/${currentBannerId}`;
 
-            const response = await axios.post(url, formData, {
+            await axios.post(url, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
@@ -184,7 +188,7 @@ const Banners = () => {
     };
 
     // Prepare form for update
-    const prepareUpdateForm = (banner: SplashScreenData) => {
+    const prepareUpdateForm = (banner: any) => {
         console.log("bannnner", banner);
 
         setValue('title', banner.title);
@@ -212,8 +216,8 @@ const Banners = () => {
     };
 
     // Modal handlers
-    const handleOpen = (type: "delete", splash: SplashScreenData) => {
-        setModalType(type);
+    const handleOpen = (splash: SplashScreenData) => {
+        // setModalType(type);
         setOpen(true);
         setCurrentBannerId(splash.id);
     };
@@ -256,12 +260,12 @@ const Banners = () => {
                         Confirm Delete
                     </Typography>
                     <Typography sx={{ mb: 2 }}>
-                        هل انت متأكد من مسح هذا البانر ؟
+                        {t('bannersDel.subtitle')}
                     </Typography>
                     <Box sx={{ display: 'flex', justifyContent: 'flex-end', gap: 2 }}>
-                        <Button onClick={handleClose}>اغلاق</Button>
+                        <Button onClick={handleClose}>  {t('bannersDel.close')}</Button>
                         <Button onClick={deleteBanner} color="error" variant="contained">
-                            حذف
+                            {t('bannersDel.delete')}
                         </Button>
                     </Box>
                 </Box>
@@ -276,7 +280,7 @@ const Banners = () => {
                             <Item>
                                 <Grid container spacing={2} direction="column">
                                     <Grid item>
-                                        <FieldLabel>عنوان البانر</FieldLabel>
+                                        <FieldLabel> {t('banners.title')} </FieldLabel>
                                         <TextField
                                             fullWidth
                                             {...register('title', { required: true })}
@@ -288,7 +292,7 @@ const Banners = () => {
                                         />
                                     </Grid>
                                     <Grid item>
-                                        <FieldLabel>وصف البانر</FieldLabel>
+                                        <FieldLabel> {t('banners.description')} </FieldLabel>
                                         <TextField
                                             fullWidth
                                             {...register('description', { required: true })}
@@ -300,7 +304,7 @@ const Banners = () => {
                                         />
                                     </Grid>
                                     <Grid item>
-                                        <FieldLabel>رقم الطلب</FieldLabel>
+                                        <FieldLabel> {t('banners.orderNum')} </FieldLabel>
                                         <TextField
                                             fullWidth
                                             {...register('order', { required: true })}
@@ -312,7 +316,7 @@ const Banners = () => {
                                         />
                                     </Grid>
                                     <Grid item>
-                                        <FieldLabel>اضافة صورة</FieldLabel>
+                                        <FieldLabel> {t('banners.addImg')} </FieldLabel>
                                         <input
                                             type="file"
                                             accept="image/*"
@@ -351,13 +355,13 @@ const Banners = () => {
                             onClick={resetForm}
                             color="secondary"
                         >
-                            إعادة الضبط
+                            {t('banners.resetBtn')}
                         </StyledButton>
                         <StyledButton
                             color="primary"
                             type="submit"
                         >
-                            {btnState === 'add' ? 'اضافة' : 'تعديل'}
+                            {btnState === 'add' ? t('banners.addBtn') : t('banners.updateBtn')}
                         </StyledButton>
                     </Box>
                 </StyledPaper>
@@ -369,17 +373,17 @@ const Banners = () => {
                     <Table>
                         <TableHead>
                             <TableRow>
-                                <TableCell align='center'>العنوان</TableCell>
-                                <TableCell align="center">العنوان الفرعي</TableCell>
-                                <TableCell align="center">الصورة</TableCell>
+                                <TableCell align='center'> {t('banners.title')} </TableCell>
+                                <TableCell align="center"> {t('banners.subTitle')} </TableCell>
+                                <TableCell align="center">{t('banners.img')}</TableCell>
                                 <TableCell align="center">ID</TableCell>
-                                <TableCell align="center">الاجراءات</TableCell>
+                                <TableCell align="center"> Actions </TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
                             {allBannersArray
                                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                                .map((banner) => (
+                                .map((banner: any) => (
                                     <TableRow key={banner.id}>
                                         <TableCell align='center'>
                                             {banner.title}
@@ -402,7 +406,7 @@ const Banners = () => {
                                         <TableCell align="center">
                                             <Box sx={{ display: 'flex', justifyContent: 'center', gap: 1 }}>
                                                 <Button
-                                                    onClick={() => handleOpen("delete", banner)}
+                                                    onClick={() => handleOpen(banner)}
                                                     color="error"
                                                     size="small"
                                                 >

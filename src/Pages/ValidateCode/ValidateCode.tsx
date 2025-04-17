@@ -17,7 +17,7 @@ const ValidateCode = () => {
         }),
     }));
 
-    const [values, setValues] = React.useState(['', '', '', '', '']);
+    const [values, setValues]: any = React.useState(['', '', '', '', '']);
 
 
     return (
@@ -51,7 +51,7 @@ const ValidateCode = () => {
 
                                 <PinInput
                                     values={values}
-                                    onChange={(value, index, values) => setValues(values || '')}
+                                    onChange={(values: any) => setValues(values || '')}
                                     size={'lg'}
                                     inputStyle={{
                                         backgroundColor: 'rgba(242, 246, 250, 1)'

@@ -1,9 +1,8 @@
 import { Menu, MenuItem, Sidebar, SubMenu, sidebarClasses } from 'react-pro-sidebar';
 import './Sidebar.css';
 import { NavLink, useLocation } from 'react-router-dom';
-import React from 'react';
 import { Box, IconButton, Tooltip, Typography, useTheme } from "@mui/material";
-import { ChevronLeft, ChevronRight, Menu as MenuIcon } from "@mui/icons-material";
+import { ChevronLeft, ChevronRight } from "@mui/icons-material";
 import { useTranslation } from 'react-i18next';
 
 const drawerWidth = 250;
@@ -145,7 +144,7 @@ const SideBar = ({ isCollapsed, handleToggle }: { isCollapsed: boolean, handleTo
             >
                 <Menu
                     menuItemStyles={{
-                        button: ({ level, active }) => {
+                        button: ({ active }) => {
                             return {
                                 color: theme.palette.text.primary,
                                 backgroundColor: active ? theme.palette.action.selected : 'transparent',

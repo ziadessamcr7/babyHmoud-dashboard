@@ -1,5 +1,5 @@
 
-import React, { useEffect, useState, memo, useCallback } from 'react';
+import { useEffect, useState, memo } from 'react';
 import {
   Avatar,
   Box,
@@ -51,21 +51,10 @@ const Item = styled(Paper)(({ theme }) => ({
   }),
 }));
 
-const StyledButton = styled(Button)(({ theme, color }) => ({
-  padding: theme.spacing(1, 5),
-  borderRadius: theme.spacing(0.5),
-  fontWeight: 700,
-  margin: theme.spacing(1),
-  border: color === 'primary' ? 'none' : `.0625rem solid ${theme.palette.primary.main}`,
-  backgroundColor: color === 'primary' ? theme.palette.primary.main : 'transparent',
-  color: color === 'primary' ? 'white' : theme.palette.primary.main,
-  '&:hover': {
-    backgroundColor: color === 'primary' ? theme.palette.primary.dark : 'rgba(0, 0, 0, 0.04)',
-  },
-}));
+
 
 // Component for Input fields in form (with memoization and i18n)
-const CategoryInput = memo(({ label, name, register, errors, placeholder, type = "text" }) => {
+const CategoryInput = memo(({ label, name, register, errors, placeholder, type = "text" }: any) => {
   const { t } = useTranslation();
   return (
     <Box mb={2}>
@@ -94,7 +83,7 @@ const CategoryInput = memo(({ label, name, register, errors, placeholder, type =
 CategoryInput.displayName = "CategoryInput";
 
 // Table Row Component
-const CategoryRow = ({ row, handleOpen, updateForm }) => {
+const CategoryRow = ({ row, handleOpen, updateForm }: any) => {
   const { t } = useTranslation();
   return (
     <TableRow>
@@ -149,7 +138,7 @@ const Categories = () => {
   const [modalType, setModalType] = useState("");
 
   // Modal Handlers
-  const handleOpen = (type, cat) => {
+  const handleOpen = (type: any, cat: any) => {
     setModalType(type);
     setOpen(true);
     if (type === 'delete') {
@@ -164,17 +153,17 @@ const Categories = () => {
   const handleClose = () => setOpen(false);
 
   // Table Pagination Handlers
-  const handleChangePage = (_event, newPage) => {
+  const handleChangePage = (_event: any, newPage: any) => {
     setPage(newPage);
   };
 
-  const handleChangeRowsPerPage = (event) => {
+  const handleChangeRowsPerPage = (event: any) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
 
   // Image Upload Handler
-  const handelImgUpload = (event) => {
+  const handelImgUpload = (event: any) => {
     if (event.target.files && event.target.files[0]) {
       const file = event.target.files[0];
       setValue('image', file);
@@ -228,7 +217,7 @@ const Categories = () => {
   };
 
   // Form Handlers
-  const updateForm = (row) => {
+  const updateForm = (row: any) => {
     setValue('name', row.name);
     setValue('name_en', row.name_en || '');
     setImage(row.image);
@@ -243,7 +232,7 @@ const Categories = () => {
     setBtnState('addBtn');
   };
 
-  const submitFrom = async (data) => {
+  const submitFrom = async (data: any) => {
     try {
       const formData = new FormData();
       formData.append("name", data.name);
@@ -532,7 +521,7 @@ const Categories = () => {
               <TableBody>
                 {categories
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  .map((row) => (
+                  .map((row: any) => (
                     <CategoryRow key={row.id} row={row} handleOpen={handleOpen} updateForm={updateForm} />
                   ))}
               </TableBody>

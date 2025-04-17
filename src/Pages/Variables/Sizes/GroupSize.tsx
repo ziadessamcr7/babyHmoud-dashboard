@@ -12,7 +12,6 @@ import {
     TableCell,
     TableBody,
     TablePagination,
-    styled
 } from "@mui/material";
 import axios from "axios";
 import { useForm } from "react-hook-form";
@@ -49,14 +48,6 @@ const modalStyle = {
     borderRadius: 2,
 };
 
-const StyledPaper = styled(Paper)(({ theme }) => ({
-    backgroundColor: "#fff",
-    ...theme.typography.body2,
-    padding: theme.spacing(1),
-    textAlign: "start",
-    color: theme.palette.text.primary,
-    boxShadow: "none",
-}));
 
 // مودال إضافة/تعديل مجموعة حجم
 interface GroupSizeModalProps {
@@ -256,7 +247,6 @@ const GroupSizePage: React.FC = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [groupSizes, setGroupSizes] = useState<GroupSize[]>([]);
     const [availableSizes, setAvailableSizes] = useState<Size[]>([]);
-    const [btnState, setBtnState] = useState("addBtn");
     const [groupSizeId, setGroupSizeId] = useState(0);
 
     // مودالات الإضافة/التعديل والحذف وتعديل المقاسات
@@ -270,7 +260,7 @@ const GroupSizePage: React.FC = () => {
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(2);
 
-    const { register, handleSubmit, reset, setValue } = useForm<{ name: string }>();
+    const { reset, setValue } = useForm<{ name: string }>();
 
     const handleChangePage = (_: unknown, newPage: number) => {
         setPage(newPage);

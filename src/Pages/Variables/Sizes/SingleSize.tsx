@@ -12,9 +12,7 @@ import {
   TableCell,
   TableBody,
   TablePagination,
-  styled,
 } from "@mui/material";
-import Grid2 from "@mui/material/Unstable_Grid2";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import { BeatLoader } from "react-spinners";
@@ -41,14 +39,6 @@ const modalStyle = {
   borderRadius: 2,
 };
 
-const StyledPaper = styled(Paper)(({ theme }) => ({
-  backgroundColor: "#fff",
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: "start",
-  color: theme.palette.text.primary,
-  boxShadow: "none",
-}));
 
 // مودال الإضافة/التعديل
 interface SizeModalProps {

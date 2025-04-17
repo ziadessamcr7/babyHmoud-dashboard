@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   Box,
   Button,
@@ -13,18 +13,21 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
+import { useTranslation } from 'react-i18next';
 
 const CustomizedForm = () => {
   // تخزين النماذج المجلوبة من الـ API
-  const [forms, setForms] = useState([]);
+  const [forms, setForms]: any = useState([]);
   // تخزين بيانات النموذج الحالي (للإنشاء أو التعديل)
-  const [activeForm, setActiveForm] = useState({
+  const [activeForm, setActiveForm]: any = useState({
     name: '',
     description: '',
     fields: []
   });
-  const [isEditing, setIsEditing] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isEditing, setIsEditing]: any = useState(false);
+  const [isLoading, setIsLoading]: any = useState(false);
+
+  const { t } = useTranslation();
 
   // رابط الـ API للنماذج
   const apiUrl = 'https://babyhumod.shop/api/forms';
@@ -48,21 +51,21 @@ const CustomizedForm = () => {
   };
 
   // تحديث القيم الأساسية للنموذج (الاسم، الوصف)
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: any) => {
     const { name, value } = e.target;
-    setActiveForm((prev) => ({ ...prev, [name]: value }));
+    setActiveForm((prev: any) => ({ ...prev, [name]: value }));
   };
 
   // تحديث قيمة حقل معين داخل مصفوفة الحقول
-  const handleFieldChange = (index, fieldName, value) => {
+  const handleFieldChange = (index: any, fieldName: any, value: any) => {
     const newFields = [...activeForm.fields];
     newFields[index] = { ...newFields[index], [fieldName]: value };
-    setActiveForm((prev) => ({ ...prev, fields: newFields }));
+    setActiveForm((prev: any) => ({ ...prev, fields: newFields }));
   };
 
   // عند تغيير نوع الحقل، نهيئ بيانات الحقل الجديد
   // في حالة "نص منسق" يتم إنشاء مفتاح "options" فارغ بحيث يدخل المستخدم الـ JSON كاملاً
-  const handleTypeChange = (index, newType) => {
+  const handleTypeChange = (index: any, newType: any) => {
     const newFields = [...activeForm.fields];
     if (newType === 'styled_text') {
       newFields[index] = {
@@ -79,26 +82,26 @@ const CustomizedForm = () => {
     } else {
       newFields[index] = { type: 'text', label: newFields[index].label || '' };
     }
-    setActiveForm((prev) => ({ ...prev, fields: newFields }));
+    setActiveForm((prev: any) => ({ ...prev, fields: newFields }));
   };
 
   // إضافة حقل جديد (افتراضيًا من نوع "نص")
   const addField = () => {
-    setActiveForm((prev) => ({
+    setActiveForm((prev: any) => ({
       ...prev,
       fields: [...prev.fields, { type: 'text', label: '' }]
     }));
   };
 
   // حذف حقل معين من النموذج
-  const removeField = (index) => {
+  const removeField = (index: any) => {
     const newFields = [...activeForm.fields];
     newFields.splice(index, 1);
-    setActiveForm((prev) => ({ ...prev, fields: newFields }));
+    setActiveForm((prev: any) => ({ ...prev, fields: newFields }));
   };
 
   // عند إرسال النموذج (إنشاء أو تحديث)
-  const handleFormSubmit = async (e) => {
+  const handleFormSubmit = async (e: any) => {
     e.preventDefault();
 
     // تجهيز البيانات قبل الإرسال؛
@@ -106,19 +109,19 @@ const CustomizedForm = () => {
     const payload = {
       name: activeForm.name,
       description: activeForm.description,
-      fields: activeForm.fields.map((field) => {
+      fields: activeForm.fields.map((field: any) => {
         if (field.type === 'dropdown') {
           return {
             type: field.type,
             label: field.label,
             options:
               typeof field.options === 'string'
-                ? field.options.split(',').map(opt => opt.trim()).filter(opt => opt !== '')
+                ? field.options.split(',').map((opt: any) => opt.trim()).filter((opt: any) => opt !== '')
                 : field.options
           };
         }
         if (field.type === 'styled_text') {
-          let optionsObj = {};
+          let optionsObj: any = {};
           try {
             optionsObj = JSON.parse(field.options);
           } catch (error) {
@@ -173,8 +176,8 @@ const CustomizedForm = () => {
   };
 
   // تعبئة بيانات النموذج عند النقر على زر التعديل
-  const handleEditForm = (form) => {
-    const formattedFields = form.fields.map((field) => {
+  const handleEditForm = (form: any) => {
+    const formattedFields = form.fields.map((field: any) => {
       if (field.type === 'dropdown' && field.options) {
         try {
           const opts = typeof field.options === 'string' ? JSON.parse(field.options) : field.options;
@@ -197,7 +200,7 @@ const CustomizedForm = () => {
   };
 
   // حذف نموذج من خلال الـ API
-  const handleDeleteForm = async (id) => {
+  const handleDeleteForm = async (id: any) => {
     if (window.confirm('هل أنت متأكد من حذف هذا النموذج؟')) {
       try {
         const response = await fetch(`${apiUrl}/${id}`, {
@@ -215,7 +218,7 @@ const CustomizedForm = () => {
   return (
     <Box sx={{ p: 2 }}>
       <Typography variant="h4" sx={{ mb: 2 }}>
-        النموذج المخصص للمنتجات
+        {t('dynamicForm.mainTitle')}
       </Typography>
 
       {/* نموذج الإنشاء/التعديل */}
@@ -223,7 +226,7 @@ const CustomizedForm = () => {
         <form onSubmit={handleFormSubmit}>
           <TextField
             fullWidth
-            label="اسم النموذج"
+            label={t('dynamicForm.formName')}
             name="name"
             value={activeForm.name}
             onChange={handleInputChange}
@@ -232,7 +235,7 @@ const CustomizedForm = () => {
           />
           <TextField
             fullWidth
-            label="الوصف"
+            label={t('dynamicForm.formDescription')}
             name="description"
             value={activeForm.description}
             onChange={handleInputChange}
@@ -241,21 +244,21 @@ const CustomizedForm = () => {
           />
 
           <Typography variant="h6" sx={{ mt: 2 }}>
-            الحقول
+            {t('dynamicForm.fromFields')}
           </Typography>
-          {activeForm.fields.map((field, index) => (
+          {activeForm.fields.map((field: any, index: any) => (
             <Box key={index} sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
               <Select
                 value={field.type}
                 onChange={(e) => handleTypeChange(index, e.target.value)}
                 sx={{ mr: 2, width: '150px' }}
               >
-                <MenuItem value="text">نص</MenuItem>
-                <MenuItem value="dropdown">قائمة منسدلة</MenuItem>
-                <MenuItem value="styled_text">نص منسق</MenuItem>
+                <MenuItem value="text"> {t('dynamicForm.text')} </MenuItem>
+                <MenuItem value="dropdown"> {t('dynamicForm.dropDownList')} </MenuItem>
+                <MenuItem value="styled_text"> {t('dynamicForm.formattedText')} </MenuItem>
               </Select>
               <TextField
-                label="التسمية"
+                label={t('dynamicForm.naming')}
                 value={field.label}
                 onChange={(e) => handleFieldChange(index, 'label', e.target.value)}
                 sx={{ mr: 2, flex: 1 }}
@@ -263,7 +266,7 @@ const CustomizedForm = () => {
               />
               {field.type === 'dropdown' && (
                 <TextField
-                  label="خيارات (مفصولة بفواصل)"
+                  label={t('dynamicForm.choosingJson')}
                   value={field.options || ''}
                   onChange={(e) => handleFieldChange(index, 'options', e.target.value)}
                   sx={{ mr: 2, flex: 1 }}
@@ -272,7 +275,7 @@ const CustomizedForm = () => {
               )}
               {field.type === 'styled_text' && (
                 <TextField
-                  label="خيارات (أدخل JSON كاملاً)"
+                  label={t('dynamicForm.choosingCommas')}
                   value={field.options || ''}
                   onChange={(e) => handleFieldChange(index, 'options', e.target.value)}
                   sx={{ mr: 2, flex: 1 }}
@@ -291,14 +294,14 @@ const CustomizedForm = () => {
             onClick={addField}
             sx={{ mb: 2 }}
           >
-            إضافة حقل
+            {t('dynamicForm.AddField')}
           </Button>
           <Box sx={{ mt: 2 }}>
             <Button sx={{ marginLeft: '8px' }} variant="contained" type="submit">
-              {isEditing ? 'تحديث النموذج' : 'إنشاء النموذج'}
+              {isEditing ? t('dynamicForm.updateForm') : t('dynamicForm.createForm')}
             </Button>
             <Button variant="outlined" onClick={resetForm} sx={{ ml: 2 }}>
-              إعادة التعيين
+              {t('dynamicForm.resetBtn')}
             </Button>
           </Box>
         </form>
@@ -306,12 +309,12 @@ const CustomizedForm = () => {
 
       {/* عرض النماذج الحالية */}
       <Typography variant="h5" sx={{ mb: 2 }}>
-        النماذج الحالية
+        {t('dynamicForm.currentForms')}
       </Typography>
       {isLoading ? (
         <Typography>جار التحميل...</Typography>
       ) : (
-        forms.map((form) => (
+        forms.map((form: any) => (
           <Paper
             key={form.id}
             sx={{

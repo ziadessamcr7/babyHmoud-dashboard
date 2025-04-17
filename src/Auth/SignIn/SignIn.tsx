@@ -26,7 +26,6 @@ const SignIn = () => {
                 flexGrow: 1, height: '100vh',
                 padding: '0',
 
-                backgroundColor: 'salmon'
             }}>
                 <Grid2 container spacing={0}>
                     <Grid2 size={6}>

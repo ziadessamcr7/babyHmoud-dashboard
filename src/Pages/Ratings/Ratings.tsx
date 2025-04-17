@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './Ratings.css'
-import { Box, Button, Collapse, Grid2, Modal, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow, Typography } from '@mui/material'
+import { Box, Button, Modal, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow, Typography } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search';
-import DeleteIcon from '@mui/icons-material/Delete';
-import LockIcon from '@mui/icons-material/Lock';
-import BorderColorIcon from '@mui/icons-material/BorderColor';
 import StarIcon from '@mui/icons-material/Star';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import axios from 'axios';
@@ -33,47 +30,9 @@ const Ratings = () => {
         setPage(0);
     };
 
-    interface HistoryData {
-        date: string;
-        customerId: string;
-        amount: number;
-        ayHaga: number;
-        ayHaga2: number;
-    }
 
-    interface RowData {
-        name: string;
-        calories: number;
-        fat: number;
-        carbs: number;
-        protein: number;
-        price: number;
-        history: HistoryData[];
-        id: number;
-    }
 
-    const createData = (
-        name: string,
-        calories: number,
-        fat: number,
-        carbs: number,
-        protein: number,
-        price: number,
-        id: number
-    ): RowData => {
-        return {
-            name,
-            calories,
-            fat,
-            carbs,
-            protein,
-            price,
-            history: [
-                { date: '', customerId: '11091700', amount: 3, ayHaga: 555, ayHaga2: 'Apple iPhone 16' },
-            ],
-            id
-        };
-    };
+
 
     const getAllRatings = () => {
         setIsLoading(true)
@@ -96,8 +55,7 @@ const Ratings = () => {
             });
     }
 
-    const ClientsData: React.FC<{ row: RowData }> = ({ row }) => {
-        const [open, setOpen] = useState(false);
+    const ClientsData: React.FC<{ row: any }> = ({ row }) => {
 
         return (
             <>
@@ -192,12 +150,7 @@ const Ratings = () => {
     };
 
 
-    const rows: RowData[] = [
-        createData('احمد المنفي', 'التطبيق انيق جدا و سلس بردو حاجه عظمة بصراحة', 6.0, 'احمد محمد رضا', 'منذ دقيقتين', 3.99, 989),
-        createData('احمد المنفي', 'التطبيق انيق جدا و سلس بردو حاجه عظمة بصراحة', 16.0, 'احمد محمد رضا', 'منذ دقيقتين', 3.79, 989),
-        createData('احمد المنفي', 'التطبيق انيق جدا و سلس بردو حاجه عظمة بصراحة', 3.7, 'احمد محمد رضا', 'منذ دقيقتين', 2.5, 989),
-        createData('احمد المنفي', 'التطبيق انيق جدا و سلس بردو حاجه عظمة بصراحة', 16.0, 'احمد محمد رضا', 'منذ دقيقتين', 1.5, 989),
-    ];
+
 
     const [isLoading, setIsLoading] = useState(false);
 
@@ -331,7 +284,7 @@ const Ratings = () => {
                     border: 'none',
                     padding: '7px',
                 }}
-                    type="text"
+
                     type="text" placeholder={i18n.language === 'ar' ? 'بحث' : 'search'}
                 />
                 <SearchIcon sx={{

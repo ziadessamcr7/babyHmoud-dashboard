@@ -13,37 +13,37 @@ import {
   TableHead,
   TableRow,
   Typography,
-  Divider,
+  // Divider,
   Chip,
-  Stack,
+  // Stack,
   List,
   ListItem,
   ListItemText,
-  Avatar,
-  IconButton
+  // Avatar,
+  // IconButton
 } from '@mui/material';
 import {
   ArrowUpward,
   ArrowDownward,
-  MoreVert,
-  KeyboardArrowUp,
-  KeyboardArrowDown
+  // MoreVert,
+  // KeyboardArrowUp,
+  // KeyboardArrowDown
 } from '@mui/icons-material';
 import {
   LineChart,
   Line,
   BarChart,
   Bar,
-  AreaChart,
-  Area,
-  PieChart,
-  Pie,
-  Cell,
+  // AreaChart,
+  // Area,
+  // PieChart,
+  // Pie,
+  // Cell,
   XAxis,
   YAxis,
   CartesianGrid,
   Tooltip,
-  Legend,
+  // Legend,
   ResponsiveContainer
 } from 'recharts';
 
@@ -149,11 +149,11 @@ const todayOrdersData = [
   { time: '11pm', orders: 90 },
 ];
 
-const pieData = [
-  { name: 'نظام ولاء المواقع', value: 4567, color: '#1976d2' },
-  { name: 'استبيان الموقع', value: 3167, color: '#29b6f6' },
-  { name: 'اطعم تاجر', value: 1845, color: '#66bb6a' },
-];
+// const pieData = [
+//   { name: 'نظام ولاء المواقع', value: 4567, color: '#1976d2' },
+//   { name: 'استبيان الموقع', value: 3167, color: '#29b6f6' },
+//   { name: 'اطعم تاجر', value: 1845, color: '#66bb6a' },
+// ];
 
 const recentTransactions = [
   { id: '#5089', date: '25 مارس 2025', amount: '$1200', status: 'تم الدفع' },
@@ -189,29 +189,29 @@ const currentOrders = [
 ];
 
 
-const renderCustomizedLabel = ({
-  cx, cy, midAngle, innerRadius, outerRadius, percent, index, name, value
-}: any) => {
-  // Calculate the position for the label
-  const RADIAN = Math.PI / 52;
-  // You can adjust these values to position the labels where you want
-  const radius = outerRadius * 1.4;  // Adjust this multiplier to move labels further from or closer to the pie
-  const x = cx + radius * Math.cos(-midAngle * RADIAN + 1);
-  const y = cy + radius * Math.sin(-midAngle * RADIAN + 1);
+// const renderCustomizedLabel = ({
+//   cx, cy, midAngle, innerRadius, outerRadius, percent, index, name, value
+// }: any) => {
+//   // Calculate the position for the label
+//   const RADIAN = Math.PI / 52;
+//   // You can adjust these values to position the labels where you want
+//   const radius = outerRadius * 1.4;  // Adjust this multiplier to move labels further from or closer to the pie
+//   const x = cx + radius * Math.cos(-midAngle * RADIAN + 1);
+//   const y = cy + radius * Math.sin(-midAngle * RADIAN + 1);
 
-  return (
-    <text
-      x={x}
-      y={y}
-      fill={pieData[index].color}
-      textAnchor={x > cx ? 'start' : 'end'}
-      dominantBaseline="central"
-      fontSize="16"
-    >
-      {`${name}: ${value}`}
-    </text>
-  );
-};
+//   return (
+//     <text
+//       x={x}
+//       y={y}
+//       fill={pieData[index].color}
+//       textAnchor={x > cx ? 'start' : 'end'}
+//       dominantBaseline="central"
+//       fontSize="16"
+//     >
+//       {`${name}: ${value}`}
+//     </text>
+//   );
+// };
 
 // Dashboard component
 const Dashboard = () => {
