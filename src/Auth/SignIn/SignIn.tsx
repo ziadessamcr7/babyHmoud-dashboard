@@ -62,13 +62,14 @@ const SignIn = () => {
                                     <Link style={{ color: 'black' }} to={'/forget-password'}> هل نسيت كلمة المرور؟ </Link>
                                 </div>
 
-                                <button
+                                <Link
                                     style={{
                                         marginTop: '7px'
                                     }}
+                                    to={'/clients'}
                                 >
                                     تسجيل لدخول
-                                </button>
+                                </Link>
                             </form>
 
                         </Item>
